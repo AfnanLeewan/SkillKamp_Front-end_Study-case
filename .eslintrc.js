@@ -20,11 +20,10 @@ module.exports = {
     'react'
   ],
   rules: {
-    // 'react/jsx-uses-react': 'error',
-    // 'react/jsx-uses-vars': 'error',
-    // 'react/prop-types': 'error',
-    // 'react/jsx-no-undef': 'error',
-    // 'react/self-closing-comp': 'error'
+    'react/jsx-uses-react': 'error',
+    'react/jsx-uses-vars': 'error',
+    'react/jsx-no-undef': 'error',
+    'react/self-closing-comp': 'error'
   },
   settings: {
     react: {

@@ -9,3 +9,7 @@
   font-family: 'Brandon_light';
   src: url('./assets/font/Brandon_light.otf')
 }
+@font-face {
+  font-family: 'Brandon_thin';
+  src: url('./assets/font/Brandon_thin.otf')
+}

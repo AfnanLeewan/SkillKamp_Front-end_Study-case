@@ -1,0 +1,43 @@
+.card-container {
+    position: relative;
+  }
+  
+  .cards {
+    display: flex;
+    width: calc(100% - 40px);
+    margin: 0 auto;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  
+  .card {
+    width: calc(100% / 4);
+    height: 200px;
+    background-color: gray;
+    display: inline-block;
+    margin-right: 10px;
+    border-radius: 10px;
+  }
+  .prev,
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  text-align: center;
+  line-height: 30px;
+  font-size: 18px;
+  color: #333;
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}

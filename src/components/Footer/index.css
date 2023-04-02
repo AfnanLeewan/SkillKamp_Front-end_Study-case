@@ -1,0 +1,68 @@
+.name{
+    color:#282828;
+    text-align: center;
+    font-family: 'brandon_light';
+    font-size: 25px ;
+    letter-spacing: 2PX;
+    margin-top: 50px;
+}
+
+.body{
+    margin-top: 15px;
+    border-top: 1px solid #282828;
+
+}
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+  }
+
+  .maillist h4{
+    font-weight:400;
+    font-family: 'brandon_thin';
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 10px;
+  }
+  .maillist form{
+    display: flex;
+    justify-content: center;
+  }
+  .maillist form input{
+    height: 35px;
+    width: 300px;
+    margin-top: 0;
+    font-family: 'brandon_reg';
+    letter-spacing: 1px;
+  }
+  .btn-container{
+    margin-top: 0;
+    margin-left: 5px;
+  }
+  .icon-container{
+
+    
+    margin-top: 0;
+  }
+  .lists-icon {
+    justify-content: center;
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 2.5rem 0 2rem 0;
+    padding: 0;
+    font-size: 15px;
+    font-family: 'Brandon_light';
+  }
+  .item{
+    margin-top: 0;
+  }
+  body footer{
+    margin-top: 50px;
+    text-align: center;
+    font-size: 15px;
+    font-family: 'brandon_thin';
+    font-weight: 600;
+  }

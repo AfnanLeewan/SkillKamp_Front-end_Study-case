@@ -15,9 +15,9 @@ const Banner = () => {
   return (
        <React.Fragment>
         <div className='banner'>
-            <h3>{state ? 'Get 10% Off - Use Coupon Code HAPPY123' : 'Free Shipping Over $50'}</h3>
+            <h3 className='banner-text'>{state ? 'Get 10% Off - Use Coupon Code HAPPY123' : 'Free Shipping Over $50'}</h3>
         </div>
-        <h1>happy kids</h1>
+        <h1 className='banner-logo'>happy kids</h1>
 
        </React.Fragment>
   )

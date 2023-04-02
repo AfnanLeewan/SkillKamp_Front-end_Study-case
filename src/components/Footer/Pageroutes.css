@@ -1,0 +1,26 @@
+  
+  .routelists{
+    justify-content: center;
+    gap: 5rem;
+    list-style: none;
+    padding: 0;
+    font-size: 15px;
+    font-family: 'Brandon_light';
+    text-align: center;
+  }
+  
+  .routelist{
+    text-decoration: none;
+    margin-top: 20px auto;
+    
+
+   
+  }
+  
+  .list a:hover,
+  .list a.active {
+    color: var(--color-primary-800);
+  }
+  .routelists li{
+    margin-top: 1px;
+  }

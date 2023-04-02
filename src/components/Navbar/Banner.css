@@ -9,7 +9,7 @@
     font-family: 'Brandon_light';
     src: url('../../assets/font/Brandon_light.otf');
   }
-h3{
+.banner-text{
 font-family: 'Brandon_light';
 font-weight:lighter;
 color : #ffffff;
@@ -25,7 +25,7 @@ margin: 0;
     transition: opacity 0.5s ease-in-out;
     
 }
-h1{
+.banner-logo{
   text-align: center;
   font-family: 'Brandon_light';
   letter-spacing:10px;
