@@ -1,19 +1,12 @@
 import React from 'react'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
+import ContactUs from '../components/Contact'
 const Contact = () => {
   return (
     <React.Fragment>
     <Navbar/>
-    <h2 style={
-        {
-          textAlign: 'center',
-          fontFamily: 'brandon_reg',
-          letterSpacing: '3px',
-          fontSize: '30px',
-          marginTop: '30px',
-          marginBottom: '30px'
-        }}>Contact Us</h2>
+    <ContactUs/>
     <Footer/>
     </React.Fragment>
   )
