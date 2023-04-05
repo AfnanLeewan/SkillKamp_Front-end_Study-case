@@ -1,43 +1,51 @@
-.card-container {
-    position: relative;
-  }
+.card-slider {
+  margin: 0 auto;
+  max-width: 95%;
+  padding: 40px 0;
   
-  .cards {
-    display: flex;
-    width: calc(100% - 40px);
-    margin: 0 auto;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-  
-  .card {
-    width: calc(100% / 4);
-    height: 200px;
-    background-color: gray;
-    display: inline-block;
-    margin-right: 10px;
-    border-radius: 10px;
-  }
-  .prev,
-.next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 30px;
-  height: 30px;
+}
+
+.card-wrapper {
+ font-family: 'brandon_light';
+  width: 100%;
+}
+
+.card {
   background-color: #fff;
-  border-radius: 50%;
-  cursor: pointer;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 24px;
   text-align: center;
-  line-height: 30px;
-  font-size: 18px;
-  color: #333;
 }
 
-.prev {
-  left: 10px;
+.card img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
 }
 
-.next {
-  right: 10px;
+.description {
+  color: #666;
+  font-size: 16px;
+  margin-top: 16px;
+}
+
+.button {
+  border: 1px solid #282828;
+  width: 250px;
+  height: 40px;
+  background-color: transparent;
+}
+
+.button:hover {
+  background-color: #0062cc;
+}
+
+.slick-dots li button:before {
+  color: #999;
+  font-size: 12px;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #007bff;
 }

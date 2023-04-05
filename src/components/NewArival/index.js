@@ -1,12 +1,16 @@
 import React from 'react'
 import './index.css'
-import Card from './Card'
-const NewArrival = () => {
+import PropTypes from 'prop-types'
+import CardSlider from './Card'
+const NewArrival = (props) => {
   return (<React.Fragment>
         <h2 className='headertext'>New Arrival</h2>
-        <Card/>
+        <CardSlider product={props.products}/>
+
     </React.Fragment>
   )
 }
-
+NewArrival.propTypes = {
+  products: PropTypes.array
+}
 export default NewArrival

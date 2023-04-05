@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import ImageSlider from '../components/UI/ImageSlider/ImageSlider'
 import NewArrival from '../components/NewArival'
@@ -6,15 +6,20 @@ import Button from '../components/UI/Button'
 import Footer from '../components/Footer'
 
 const Home = () => {
+  const [NewArrivalProducts, setNewArrivalProducts] = useState([])
   useEffect(() => {
-    fetch('https://skillkamp-api.com/v1/api/products')
+    fetch('https://skillkamp-api.com/v1/api/products/new_arrivals')
       .then(response => response.json())
-      .then(data => console.log(data))
+      .then(data => {
+        const products = data.detail.data.catalog.category.productsWithMetaData.list
+        setNewArrivalProducts(products)
+        console.log(products)
+      })
   }, [])
   return <React.Fragment>
     <Navbar/>
     <ImageSlider/>
-    <NewArrival/>
+    <NewArrival products={NewArrivalProducts} />
     <Button text='Shop All' icon='none' color='#282828'/>
     <Footer/>
     </React.Fragment>
