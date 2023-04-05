@@ -7,7 +7,7 @@ const Pageroute = (props) => {
     <div>
         <ul className='routelists'>
           <li>
-            <NavLink className='routelist' exact to="/">
+            <NavLink className='routelist' to="/">
               {props.c1}
             </NavLink>
           </li>

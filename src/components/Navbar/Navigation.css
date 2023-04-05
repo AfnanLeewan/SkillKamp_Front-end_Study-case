@@ -21,3 +21,45 @@
   .list a.active {
     color: var(--color-primary-800);
   }
+  .account{
+    display: flex;
+    position: absolute;
+    right: 150px;
+    top: 205px;
+
+  }
+  .account button{
+    display: flex;
+    background-color: transparent;
+    border: transparent;
+    cursor: pointer;
+    
+
+  }
+  .account p{
+    margin-left: 10px;
+    font-family: 'brandon_reg';
+  }
+  .account img{
+    margin-top: 10px;
+  }
+  .account .number{
+    background-color: #282828;
+    color: white;
+    width: 20px;
+    border-radius: 100%;
+  }
+  .fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: none;
+  }
+  
+  .fullscreen.displayed {
+    display: block;
+    background-color: white;
+    z-index: 1;
+  }

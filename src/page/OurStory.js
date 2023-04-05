@@ -6,7 +6,9 @@ const OurStory = () => {
   return (
     <React.Fragment>
     <Navbar/>
-    <img src={cover}/>
+    <div style={{ width: '100%', height: '650px' }}>
+  <img src={cover} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
+</div>
     <h2 style={
         {
           textAlign: 'center',
@@ -20,9 +22,10 @@ const OurStory = () => {
             {
               fontFamily: 'brandon_light',
               textAlign: 'center',
-              margin: '50px 230px 30px 230px ',
-              fontSize: 'small',
-              letterSpacing: '1px'
+              margin: '50px auto 30px auto ',
+              fontSize: '15px',
+              letterSpacing: '1px',
+              width: '900px'
 
             }
         }
@@ -31,9 +34,10 @@ const OurStory = () => {
             {
               fontFamily: 'brandon_light',
               textAlign: 'center',
-              margin: '1px 230px 50px 230px ',
-              fontSize: 'small',
-              letterSpacing: '1px'
+              margin: '1px auto 50px auto ',
+              fontSize: '15px',
+              letterSpacing: '1px',
+              width: '900px'
 
             }
         }

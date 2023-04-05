@@ -7,8 +7,8 @@ import ptricon from '../../assets/image/Icon/Social icons/pinterest-svgrepo-com.
 import igicon from '../../assets/image/Icon/Social icons/instagram-svgrepo-com.svg'
 const Footer = () => {
   return (
-
-            <div className='body'>
+        <div className='footer-container'>
+                        <div className='body'>
                 <h3 className='name'>happy kids</h3>
                 <div className='container'>
                     <div className='item'><Pageroute c1='Home' c2='Shop Collection' c3='Our Story' c4='Cantact' /></div>
@@ -34,7 +34,7 @@ const Footer = () => {
                 </div>
                 <footer>© 2035 by happy kids. Powered and secured by React</footer>
             </div>
-
+        </div>
   )
 }
 

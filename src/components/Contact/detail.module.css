@@ -2,13 +2,17 @@
     display: flex;
     justify-content: space-around;
     list-style: none; 
-    margin-top: 50px;
+
+    width: 1000px;
+    margin :auto auto
 
 }
 .contact-list{
     margin: 0;
     text-decoration: none;
     color: #282828;
+
+
 
   
   

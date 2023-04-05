@@ -14,7 +14,7 @@
   font-size: 15px;
   background-color: transparent;
   border: transparent;
-  margin-bottom: 100px;
+  margin-bottom: 75px;
 
 }
 
@@ -83,7 +83,7 @@
     }
   }
  textarea{
-  height: 100px;
+  height: 120px;
   width: 100%;
 
   border: transparent;
