@@ -56,8 +56,10 @@
 .collection-list p{
     margin: 2px auto;
     font-size: 15px;
+    z-index: 2;
 }
 .price-slider{
     height:  2px;
-    color:black;
+    z-index: 2;
+    
 }

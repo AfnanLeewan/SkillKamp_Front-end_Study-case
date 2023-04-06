@@ -60,7 +60,7 @@ function CardSlider (props) {
       <Slider {...settings}>
         {NewArrivalProducts.map((card, index) => {
           return (
-            <Card key={card.id} mediaUrl={card.media[0].url} name={card.name} description={card.description} price={card.price}/>
+            <Card key={card.id} sku={card.sku} mediaUrl={card.media[0].url} name={card.name} description={card.description} price={card.formattedPrice}/>
           )
         })}
       </Slider>

@@ -2,26 +2,27 @@
 import React, { useEffect, useState } from 'react'
 import Card from '../NewArival/Card'
 import './index.css'
-
+import axios from 'axios'
 const Collection = () => {
-  const [NewArrivalProducts, setNewArrivalProducts] = useState([])
+  const [data, setData] = useState([])
   useEffect(() => {
-    fetch('https://skillkamp-api.com/v1/api/products/new_arrivals')
-      .then(response => response.json())
-      .then(data => {
-        const products = data.detail.data.catalog.category.productsWithMetaData.list
-        setNewArrivalProducts(products)
-        console.log(products)
+    axios
+      .get('https://skillkamp-api.com/v1/api/products/')
+      .then((response) => {
+        setData(response.data.detail.data.catalog.category.productsWithMetaData.list)
+        console.log(response.data.detail.data.catalog.category.productsWithMetaData.list)
+      })
+      .catch((error) => {
+        console.log(error)
       })
   }, [])
-  const rows = Math.ceil(NewArrivalProducts.length / 3)
+  const rows = Math.ceil(data.length / 3)
 
   const itemRows = []
   for (let i = 0; i < rows; i++) {
     const start = i * 3
-    const rowItems = NewArrivalProducts.slice(start, start + 3).map((card) => (
-        <Card key={card.id} mediaUrl={card.media[0].url} name={card.name}
-      description={card.description} price={card.price}/>
+    const rowItems = data.slice(start, start + 3).map((card) => (
+        <Card key={card.id} sku={card.sku} mediaUrl={card.media[0].url} name={card.name} description={card.description} price={card.formattedPrice}/>
     ))
     itemRows.push(
       <div key={i} className="row">

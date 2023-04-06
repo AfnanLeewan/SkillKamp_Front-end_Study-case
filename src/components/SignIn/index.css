@@ -4,6 +4,7 @@
     align-items: center;
     height: 100vh;
     font-family: 'brandon_light';
+    z-index: 1;
 }
 .page-container h1{
     text-align: center;
