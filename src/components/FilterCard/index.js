@@ -7,13 +7,14 @@ import './index.css'
 const FilterCard = () => {
   const [state, setState] = useState({ collection: false, price: false, color: false, size: false })
   const [minPrice, setMinPrice] = useState(0)
-  const [maxPrice, setMaxPrice] = useState(100)
+  const [maxPrice, setMaxPrice] = useState(5)
+
   return (
-        <div>
+        <div className='filter-container'>
             <h2>Filter by</h2>
             <hr/>
             <div className='filter-list'><p>Collection</p><button className='filter-toggle'onClick={() => { setState({ ...state, collection: !state.collection }) } }>{!state.collection ? <img src={plus}/> : <img src={minus}/> } </button> </div>
-           {state.collection && (<div>
+           {state.collection && (<div className='collection-list'>
             <p>All</p>
             <p>T shirt</p>
             <p>Bodysuit</p>
@@ -21,10 +22,10 @@ const FilterCard = () => {
 
             <hr/>
             <div className='filter-list'><p>Price</p><button className='filter-toggle' onClick={() => { setState({ ...state, price: !state.price }) } }>{!state.price ? <img src={plus}/> : <img src={minus}/> } </button> </div>
-           {state.price && <><div><div className='price-slider'>            <RangeSlider
-              min={0}
-              max={100}
-              step={1}
+            {state.price && <><div><div className='price-slider'>            <RangeSlider className='price-slider'
+              min={17.99}
+              max={19.99}
+              step={0.1}
               values={[minPrice, maxPrice]}
               onInput={(values) => {
                 setMinPrice(values[0])

@@ -1,8 +1,9 @@
 .filter-toggle img{
-    width: 20px;
+    width: 15px;
 }
 .filter-list{
     display: flex;
+    justify-content: space-between;
 }
 .price-label{
     display: flex;
@@ -42,4 +43,21 @@
 }
 .white{
     background-color: white;
+}
+.filter-container{
+    font-family: 'brandon_reg';
+    width: 200px;
+    margin-left: 5rem;
+}
+.filter-toggle{
+    background-color: transparent;
+    border: transparent;
+}
+.collection-list p{
+    margin: 2px auto;
+    font-size: 15px;
+}
+.price-slider{
+    height:  2px;
+    color:black;
 }
