@@ -8,11 +8,11 @@ import Footer from '../components/Footer'
 const Home = () => {
   const [NewArrivalProducts, setNewArrivalProducts] = useState([])
   useEffect(() => {
-    fetch('https://skillkamp-api.com/v1/api/products/new_arrivals')
+    fetch('https://skillkamp-api.com/v1/api/products')
       .then(response => response.json())
       .then(data => {
         const products = data.detail.data.catalog.category.productsWithMetaData.list
-        setNewArrivalProducts(products)
+        setNewArrivalProducts(data)
         console.log(products)
       })
   }, [])

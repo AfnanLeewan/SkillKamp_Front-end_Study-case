@@ -1,7 +1,7 @@
 import React from 'react'
 import './index.css'
 import PropTypes from 'prop-types'
-import CardSlider from './Card'
+import CardSlider from './Cards'
 const NewArrival = (props) => {
   return (<React.Fragment>
         <h2 className='headertext'>New Arrival</h2>
