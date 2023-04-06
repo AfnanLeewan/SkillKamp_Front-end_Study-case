@@ -1,14 +1,13 @@
 import React from 'react'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
-
-import GoogleLogin from 'react-google-login'
+import FilterCard from '../components/FilterCard'
 
 const ShopCollection = () => {
   return (
     <React.Fragment>
     <Navbar/>
-    <GoogleLogin/>
+    <FilterCard/>
     <Footer/>
     </React.Fragment>
   )
