@@ -5,7 +5,7 @@ const Button = (props) => {
   const ButtonType = () => {
     if (props.icon === 'none') {
       return (
-        <button className='btn'style={{ backgroundColor: `${props.color}`, color: '#ffffff' }}>{props.text}</button>
+        <button className='btn'style={{ backgroundColor: `${props.color}`, color: '#ffffff', width: `${props.width}` }}>{props.text}</button>
       )
     }
     if (props.icon === 'left') {
@@ -22,13 +22,14 @@ const Button = (props) => {
     }
   }
   return (
-  <div className='container'>{ButtonType()}</div>
+  <div>{ButtonType()}</div>
   )
 }
 Button.propTypes = {
   icon: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired
+  text: PropTypes.string.isRequired,
+  width: PropTypes.string
 }
 
 export default Button

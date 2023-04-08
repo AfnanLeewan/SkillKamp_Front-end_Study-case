@@ -6,8 +6,8 @@ import 'react-range-slider-input/dist/style.css'
 import './index.css'
 const FilterCard = () => {
   const [state, setState] = useState({ collection: false, price: false, color: false, size: false })
-  const [minPrice, setMinPrice] = useState(0)
-  const [maxPrice, setMaxPrice] = useState(5)
+  const [minPrice, setMinPrice] = useState(17)
+  const [maxPrice, setMaxPrice] = useState(19)
 
   return (
         <div className='filter-container'>
@@ -23,9 +23,9 @@ const FilterCard = () => {
             <hr/>
             <div className='filter-list'><p>Price</p><button className='filter-toggle' onClick={() => { setState({ ...state, price: !state.price }) } }>{!state.price ? <img src={plus}/> : <img src={minus}/> } </button> </div>
             {state.price && <><div><div className='price-slider'>            <RangeSlider className='price-slider'
-              min={17.99}
-              max={19.99}
-              step={0.1}
+              min={17}
+              max={19}
+              step={1}
               values={[minPrice, maxPrice]}
               onInput={(values) => {
                 setMinPrice(values[0])

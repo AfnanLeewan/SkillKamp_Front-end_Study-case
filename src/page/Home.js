@@ -10,7 +10,9 @@ const Home = () => {
     <Navbar/>
     <ImageSlider/>
     <NewArrival/>
-    <Button text='Shop All' icon='none' color='#282828'/>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+       <Button text='Shop All' icon='none' color='#282828'/>
+    </div>
     <Footer/>
     </React.Fragment>
 }
