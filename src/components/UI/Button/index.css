@@ -3,6 +3,8 @@
     width: 150px;
     height: 40px;
     font-size: 15px;
+    border: transparent;
+    margin-bottom: 15px;
 }
 .btn-container{
     display: flex;

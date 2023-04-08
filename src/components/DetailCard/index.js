@@ -22,7 +22,7 @@ const DetailCard = (props) => {
         setData(detail)
         setColorlist(detail.options[0].selections.map(color => { return (color.key.toLowerCase()).replace(/ /g, '') }))
         setSizelist(detail.options[1].selections.map(size => { return (size.value) }))
-        console.log(detail.options[0].selections)
+        console.log(detail)
         console.log(initcolor[0])
         const selected = detail.options[0].selections.filter(element => element.key.toLowerCase().replace(/ /g, '') === initcolor[0])
         const imageURL = selected[0].linkedMediaItems[0].fullUrl
@@ -65,7 +65,7 @@ const DetailCard = (props) => {
                     <input type="text" value={1} />
                 </div>
                 <Button text='Add to Cart' color='#282828' icon='none' width='350px' />
-                <NavLink>View More Detail</NavLink>
+                <NavLink to={'/product-page/' + data.urlPart}>View More Detail</NavLink>
                 </div>
             </div>
         </Modal>

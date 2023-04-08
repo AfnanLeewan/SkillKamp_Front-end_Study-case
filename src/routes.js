@@ -4,6 +4,7 @@ import Home from './page/Home'
 import ShopCollection from './page/ShopCollection'
 import OurStory from './page/OurStory'
 import Contact from './page/Contact'
+import ProductPage from './page/Product-page'
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: '/Contact',
     element: <Contact/>
+  },
+  {
+    path: '/product-page/:id',
+    element: <ProductPage/>
   }
 ])
 export default router

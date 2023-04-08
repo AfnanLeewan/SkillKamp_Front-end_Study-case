@@ -36,7 +36,7 @@ const FilterCard = () => {
             <div className='filter-list'><p>Color</p><button className='filter-toggle'onClick={() => { setState({ ...state, color: !state.color }) } }>{!state.color ? <img src={plus}/> : <img src={minus}/> } </button> </div>
             {state.color && <div>
                 <ul className='color-lists'>
-                    <li className='color-list'> <button className='red'/></li>
+                    <li className='color-list'> <button className='blue'/></li>
                     <li className='color-list'><button className='cream'/></li>
                     <li className='color-list'><button className='green'/></li>
                     <li className='color-list'><button className='lightPink'/></li>

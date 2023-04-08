@@ -1,0 +1,61 @@
+.cream{
+    background-color: rgb(250, 250, 239);
+}
+.green{
+    background-color: rgb(134, 173, 145);;
+}
+.lightPink{
+    background-color: rgb(255, 229, 233);
+}
+.peach{
+    background-color: rgb(249, 187, 156);
+}
+.terracota{
+    background-color: rgb(205, 117, 81);
+}
+.white{
+    background-color: white;
+}
+.blue{
+    background-color: rgb(69, 69, 143);
+}
+.color{
+    border: 1px solid #c9c9c9;
+    border-radius: 20px;
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+}
+.color-container{
+    display: flex;
+    gap: 10px;
+    list-style: none;
+}
+.detail-container{
+    display: flex;
+    font-family: 'brandon_reg';
+    justify-content: space-around;
+}
+.detail-container input{
+    height: 40px;
+    width: 70px;
+    border: 1px solid #c9c9c9;
+    margin-bottom: 50px;
+    margin-top: 0px;
+}
+.detail-container p{
+
+    margin-bottom: 10px;
+}
+.detail-container select{
+    height: 40px;
+    width: 350px;
+    cursor: pointer;
+}
+
+.selected{
+    box-shadow:
+    0 0 0 2px #282828; /* inner layer */
+
+
+}
