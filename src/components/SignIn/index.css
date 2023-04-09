@@ -5,6 +5,7 @@
     height: 100vh;
     font-family: 'brandon_light';
     z-index: 1;
+
 }
 .page-container h1{
     text-align: center;
@@ -84,3 +85,95 @@
     border: transparent;
     cursor: pointer;
   }
+  .form-header{
+  text-align: 'center';
+  font-family: 'brandon_thin';
+  font-size: 15px;
+    letter-spacing: 1px;
+  text-align: center;
+  margin-top: 80px;
+  margin-bottom: 50px;
+
+}
+
+.submit{
+  font-family: 'brandon_light';
+  font-size: 15px;
+  background-color: transparent;
+  border: transparent;
+  margin-bottom: 75px;
+
+}
+
+  .form .button, .form .message, .customSelect, .form .select, .form .textarea, .form .text-input, .form .option-input + label, .form .checkbox-input + label, .form .label {
+    padding: 0.5em 1em;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    outline: none;
+    line-height: normal;
+    border-radius: 0;
+    border: none;
+    background: none;
+    display: block;
+  }
+  
+  .form .label {
+    font-family: 'brandon_light';
+    color: #282828;
+    padding-top: 0;
+    padding-left: 0;
+    letter-spacing: 0.025em;
+    font-size: 1rem;
+    line-height: 1.25;
+    position: relative;
+    z-index: 100;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .required .form .label:after, .form .required .label:after {
+    content: " *";
+    color: #E8474C;
+    font-weight: normal;
+    font-size: 0.75em;
+    vertical-align: top;
+  }
+  
+.form .select, .form .text-input{
+    font: inherit;
+    line-height: normal;
+    width: 100%;
+    box-sizing: border-box;
+    background: transparent;
+    color: #282828;
+    position: relative;
+    border-bottom: 1px solid #282828;
+    
+  }
+  .form {
+    max-width: 40em;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 22em;
+  }
+  .form .field {
+    width: 100%;
+    margin: 0 0 1.5em 0;
+  }
+  @media screen and (min-width: 40em) {
+    .form .field.half {
+      width: calc(50% - 1px);
+      margin-left: 1px;
+    }
+  }
+ textarea{
+  height: 120px;
+  width: 100%;
+
+  border: transparent;
+  border-bottom: 1px solid #282828;
+ }

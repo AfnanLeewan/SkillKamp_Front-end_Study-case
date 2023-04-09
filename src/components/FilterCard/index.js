@@ -22,16 +22,20 @@ const FilterCard = () => {
 
             <hr/>
             <div className='filter-list'><p>Price</p><button className='filter-toggle' onClick={() => { setState({ ...state, price: !state.price }) } }>{!state.price ? <img src={plus}/> : <img src={minus}/> } </button> </div>
-            {state.price && <><div><div className='price-slider'>            <RangeSlider className='price-slider'
+            {state.price && <div className='slider-container'>
+            <RangeSlider className='price-slider'
               min={17}
               max={19}
-              step={1}
+              step={0.1}
               values={[minPrice, maxPrice]}
               onInput={(values) => {
                 setMinPrice(values[0])
                 setMaxPrice(values[1])
               } }
-              range /></div></div><div className='price-label'> <p>{minPrice}</p> <p>{maxPrice}</p></div></>}
+              range />
+              <div className='price-label'>
+                 <p>{minPrice}</p> <p>{maxPrice}</p>
+                 </div></div>}
             <hr/>
             <div className='filter-list'><p>Color</p><button className='filter-toggle'onClick={() => { setState({ ...state, color: !state.color }) } }>{!state.color ? <img src={plus}/> : <img src={minus}/> } </button> </div>
             {state.color && <div>

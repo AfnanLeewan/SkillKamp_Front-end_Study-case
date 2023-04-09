@@ -5,8 +5,8 @@ import ContactUs from '../components/Contact'
 const Contact = () => {
   return (
     <React.Fragment>
-    <Navbar/>
-    <ContactUs/>
+      <div style={{ zIndex: '2', position: 'relative' }}><Navbar/></div>
+    <div style={{ zIndex: '1', position: 'relative' }}><ContactUs/></div>
     <Footer/>
     </React.Fragment>
   )

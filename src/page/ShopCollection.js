@@ -7,8 +7,8 @@ import Collection from '../components/ProductCollection'
 const ShopCollection = () => {
   return (
     <React.Fragment>
-    <Navbar/>
-    <div style={ { display: 'flex' } }>
+     <div style={{ zIndex: '2', position: 'relative' }}><Navbar/></div>
+    <div style={ { display: 'flex', zIndex: '1', position: 'relative' } }>
       <div style={{ width: '700px' }}><FilterCard/></div>
       <div style={{ height: '70%' }}><Collection/></div>
     </div>

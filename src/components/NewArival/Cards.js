@@ -40,8 +40,8 @@ function CardSlider (props) {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
+    slidesToShow: props.num,
+    slidesToScroll: 1,
     prevArrow: <CustomPrevArrow />,
     nextArrow: <CustomNextArrow />
   }
@@ -68,6 +68,7 @@ function CardSlider (props) {
   )
 }
 CardSlider.propTypes = {
-  products: PropTypes.array
+  products: PropTypes.array,
+  num: PropTypes.number
 }
 export default CardSlider

@@ -4,9 +4,10 @@ import axios from 'axios'
 import PropTypes from 'prop-types'
 import './index.css'
 import Button from '../UI/Button'
-import { useParams } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 import plus from '../../assets/image/Icon/plus-solid.svg'
 import minus from '../../assets/image/Icon/minus-solid.svg'
+import CardSlider from '../NewArival/Cards'
 const Detail = (props) => {
   const param = useParams()
   const [data, setData] = useState({})
@@ -17,6 +18,7 @@ const Detail = (props) => {
   const [colorSelected, setColorSelected] = useState([])
   // eslint-disable-next-line no-unused-vars
   const [image, setImage] = useState('')
+  const pageNum = ['-4', '-7', '-5', '8', '-9', '', '-6', '-1', '-10', '-2', '-11', '-3']
   useEffect(() => {
     axios
       .get('https://skillkamp-api.com/v1/api/products/')
@@ -49,14 +51,62 @@ const Detail = (props) => {
         console.log(error)
       })
   }, [])
+  const getProductName = () => {
+    const index = param.id.indexOf('product')
+    console.log('----', param.id)
+
+    const result = param.id.split('product')[1].slice(1)
+    console.log('----', result)
+  }
+  const fetchdata = (sku) => {
+    window.location.href = '/product-page/i-m-a-product-5'
+    axios
+      .get('https://skillkamp-api.com/v1/api/products/')
+      .then((response) => {
+        const productList = response.data.detail.data.catalog.category.productsWithMetaData.list
+        const detail = productList.filter(element => element.urlPart === param.id)
+        return detail[0].sku
+      }).then(sku =>
+        axios
+          .get(`https://skillkamp-api.com/v1/api/products/details/${sku}`)
+          .then((response) => {
+            const detail = response.data.detail.data.catalog.product
+            const initcolor = detail.options[0].selections.map(color => { return (color.key.toLowerCase()).replace(/ /g, '') })
+            setData(detail)
+            setColorlist(detail.options[0].selections.map(color => { return (color.key.toLowerCase()).replace(/ /g, '') }))
+            setSizelist(detail.options[1].selections.map(size => { return (size.value) }))
+            console.log(detail)
+            console.log(initcolor[0])
+            const selected = detail.options[0].selections.filter(element => element.key.toLowerCase().replace(/ /g, '') === initcolor[0])
+            const imageURL = selected[0].linkedMediaItems[0].fullUrl
+            setImage(imageURL)
+            setColorSelected(selected[0].key.toLowerCase().replace(/ /g, ''))
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+
+      )
+      .catch((error) => {
+        console.log(error)
+      })
+    getProductName()
+  }
   const onChangeColor = (color) => {
     const selected = data.options[0].selections.filter(element => element.key.toLowerCase().replace(/ /g, '') === color)
     setColorSelected(selected[0].key.toLowerCase().replace(/ /g, ''))
     const imageURL = selected[0].linkedMediaItems[0].fullUrl
     setImage(imageURL)
   }
-  return (
-            <div className='detail-container'>
+  return (<div>
+                <div className='header'>
+                    <p>
+                        Home/{data.name}
+                    </p>
+                    <button onClick={fetchdata}>re</button>
+
+                </div>
+                <div className='detail-container'>
                 <div>
                     <img style={{ width: '600px', height: '600px' }} src={image}/>
                     <div style={{ width: '600px' }}>{data.description}
@@ -95,7 +145,9 @@ const Detail = (props) => {
                     </header>
                 </div>
                 </div>
-            </div>
+            </div> <div className='related' ><h3>RELATED PRODUCT</h3><CardSlider num={6}/></div>
+  </div>
+
   )
 }
 Detail.propTypes = {

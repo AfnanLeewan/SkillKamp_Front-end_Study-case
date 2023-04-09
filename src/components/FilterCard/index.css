@@ -57,6 +57,9 @@
 }
 .price-slider{
     height:  2px;
+   
+}
+.slider-container{
+    position: relative;
     z-index: 2;
-    
 }
