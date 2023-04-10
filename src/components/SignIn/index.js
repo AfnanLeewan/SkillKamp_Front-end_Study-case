@@ -57,20 +57,13 @@ const SignInPage = (props) => {
         body: JSON.stringify(formData)
       })
       const data = await response.json()
-      console.log(data)
+      console.log(data.detail.Token)
+      localStorage.setItem('token', data.detail.Token)
+      localStorage.setItem('name', data.detail.Name)
     } catch (error) {
       console.error(error)
     }
-  }
-  const OnClickForm = () => {
-    // if (isLogIn) {
-    //   handleLogIn()
-    //   console.log('login')
-    // } else {
-    //   handleSignUp()
-    //   console.log('signup')
-    // }
-    console.log(isLogIn)
+    props.onClose()
   }
   return (
     <div className='page'>
@@ -84,8 +77,9 @@ const SignInPage = (props) => {
           setShowForm(false)
         } } > {!isLogIn ? 'Log In' : 'Sign Up'}  </button>
         </div>
-      { !showForm
-        ? <div>
+        <div>
+                { !showForm
+                  ? <div>
           <div className='facebook bar'>
           <p>{!isLogIn ? 'Sign up' : 'Login'} with Facebook</p>
       </div>
@@ -102,8 +96,8 @@ const SignInPage = (props) => {
           <p>{!isLogIn ? 'Sign up' : 'Login'} with Email</p>
       </div>
       </div>
-        : isLogIn
-          ? <form className='form'>
+                  : isLogIn
+                    ? <div><form className='form' >
 
            <p className='field required'>
     <label className='label required'>Email</label>
@@ -117,8 +111,8 @@ const SignInPage = (props) => {
     sitekey="6LfbmHElAAAAAKVW8YJMFLdlDnJxCTzNNSA54jve"
     onChange={onChange}
   /> */} <button onClick={handleLogIn}>{isLogIn ? 'Log In' : 'Sign Up'}</button>
-          </form>
-          : <form className='form'>
+          </form></div>
+                    : <div><form className='form'>
                                  <p className='field required'>
     <label className='label required'>Full Name</label>
     <input className='text-input' id='fullname' name='fullname' required type='text' ref={nameRef}/>
@@ -136,7 +130,9 @@ const SignInPage = (props) => {
     onChange={onChange}
   /> */}
  <button onClick={handleSignUp}>{isLogIn ? 'Log In' : 'Sign Up'}</button>
-          </form> }
+          </form> </div>}
+        </div>
+
         </div>
     </div>
   )

@@ -1,0 +1,17 @@
+.selection{
+    position: absolute;
+    top:250px;
+    right: 220px;
+    background-color: white;
+    border : 1px solid black;
+}
+.selection ul{
+    list-style: none;
+}
+.selection ul li{
+    margin: 20px 10px;
+}
+.selection ul li:hover{
+    color: #D2461c;
+    cursor: pointer;
+}

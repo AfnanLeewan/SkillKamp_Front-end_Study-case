@@ -1,0 +1,41 @@
+.cart-container{
+    position: fixed;
+    right: 0;
+    top: 0;
+    font-family: 'brandon_reg';
+    width: 350px;
+    height: 100vh;
+    background-color: white;
+    z-index: 2;
+    margin-top: 0;
+}
+.cart-container header{
+    background-color: #282828;
+    height: 90px;
+    color: white;
+    background-color: #282828;
+    margin-bottom: 30px;
+
+}
+.cart-container header h3{
+    text-align: center;
+    padding-top: 30px;
+    font-size: x-large;
+     margin-top: 0;    
+}
+.foot{
+    margin-left: 50px;
+    position: fixed;
+    bottom: 0;
+}
+.button-cart{
+    display: flex;
+    justify-content: center;
+}
+.close{
+    width: 20px;
+    position: absolute;
+    color: white;
+    top:30px;
+    margin-left: 20px;
+}

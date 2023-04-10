@@ -15,6 +15,15 @@ const Detail = (props) => {
   const [sizelist, setSizelist] = useState([])
   const [state, setState] = useState({ info: false, return: false })
   const [thumb, setthumb] = useState([])
+  const [infoState, setInfo] = useState({
+    sku: '',
+    name: '',
+    price: 0,
+    discountedPrice: 0,
+    color: '',
+    size: '',
+    qty: 1
+  })
   // eslint-disable-next-line no-unused-vars
   const [colorSelected, setColorSelected] = useState([])
   // eslint-disable-next-line no-unused-vars
@@ -40,6 +49,7 @@ const Detail = (props) => {
             setSizelist(detail.options[1].selections.map(size => { return (size.value) }))
             console.log(detail)
             console.log(initcolor[0])
+            setInfo(setInfo(() => { return { sku: detail.sku, name: detail.name, price: detail.price } }))
             const selected = detail.options[0].selections.filter(element => element.key.toLowerCase().replace(/ /g, '') === initcolor[0])
             const imageURL = selected[0].linkedMediaItems[0].fullUrl
             setImage(imageURL)
@@ -47,14 +57,24 @@ const Detail = (props) => {
             const combinedcolor = colorarr.map((key, index) => {
               return { key: key, value: thumbarr[index] }
             })
-            console.log(')))))', combinedcolor)
+            const infoDetail = {
+              sku: detail.sku,
+              name: detail.name,
+              price: detail.price,
+              discountedPrice: detail.discountedPrice,
+              color: '',
+              size: '',
+              qty: 1
+            }
+            console.log(infoDetail)
+            setInfo(infoDetail)
             setthumb(combinedcolor)
           })
           .catch((error) => {
             console.log(error)
           })
 
-      )
+      ).then(() => { console.log(infoState) })
       .catch((error) => {
         console.log(error)
       })
@@ -74,12 +94,60 @@ const Detail = (props) => {
       window.location.replace(`http://localhost:3000/product-page/i-m-a-product${pageNum[index - 1]}`)
     }
   }
+  const onChangeValue = (event) => {
+    const updatedObject = { ...infoState }
+    updatedObject.qty = event.target.value
+    setInfo(updatedObject)
+  }
+  const onChangeSize = (event) => {
+    const updatedObject = { ...infoState }
+    updatedObject.size = event.target.value
+    setInfo(updatedObject)
+    console.log(updatedObject)
+  }
   const onChangeColor = (color) => {
     const selected = data.options[0].selections.filter(element => element.key.toLowerCase().replace(/ /g, '') === color)
     setColorSelected(selected[0].key.toLowerCase().replace(/ /g, ''))
+    setInfo(setInfo(() => { return { ...infoState, color: selected[0].key } }))
     const imageURL = selected[0].linkedMediaItems[0].fullUrl
     setImage(imageURL)
+    const updatedObject = { ...infoState }
+    updatedObject.color = selected[0].key
+    setInfo(updatedObject)
   }
+  const onAdd = async (event) => {
+    console.log(infoState)
+    event.preventDefault()
+    const formData = {
+      sku: infoState.sku,
+      name: infoState.name,
+      price: infoState.price,
+      discountedPrice: infoState.discountedPrice,
+      color: infoState.color,
+      size: infoState.size,
+      qty: infoState.qty
+    }
+    console.log(JSON.stringify(formData))
+    try {
+      const response = await fetch('https://skillkamp-api.com/v1/api/cart', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          // eslint-disable-next-line quote-props
+          'accept': 'application/json',
+          // eslint-disable-next-line quote-props
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmdWxsbmFtZSI6InRlc3QxIiwidXNlcl9pZCI6InRlc3QxQGdtYWlsLmNvbSIsImV4cGlyZXMiOjE2ODExMjYwNjUuMTExMzQ4NH0.Qv73_l-EUSk8FFxnUqTcfSSEytjBNjNWCJ4LIZPioiI'
+        },
+        body: JSON.stringify(formData
+        )
+      })
+      const data = await response.json()
+      console.log(data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (<div>
     <div style={{ margin: 'auto 20%' }}>
 <div className='header' style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -98,7 +166,6 @@ const Detail = (props) => {
                 <div>
                     <img style={{ width: '600px', height: '600px' }} src={image}/>
                    <div>{ thumb.map(color => {
-                     console.log(color)
                      return (<img key={color.key} style={{ width: '50px', marginLeft: '10px' }} className={`${colorSelected === color.key && 'selected'} ${color.key}`} onClick={() => { onChangeColor(color.key) }} src={color.value}/>)
                    }) }</div>
                     <div style={{ width: '600px' } } >{data.description}
@@ -116,19 +183,19 @@ const Detail = (props) => {
                 })} </ul>
                 <div>
                     <div>size</div>
-                    <select id="fruits">
+                    <select onChange={onChangeSize}>
                         <option>Select</option>
                         {sizelist.map(size => { return (<option key={size}>{size}</option>) })}
                     </select>
                 </div>
                 <div>
                     <p>Quantity</p>
-                    <input type="text" value={1} />
+                    <input type="number" onChange={onChangeValue} />
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}><Button text='Add to Cart' color='#282828' icon='none' width='300px' />
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}><Button text='Add to Cart' color='#282828' icon='none' width='300px' onClick={onAdd}/>
                 <div className='whish'> <svg xmlns="http://www.w3.org/2000/svg" fill='currentColor' viewBox="0 0 512 512"><path d="M225.8 468.2l-2.5-2.3L48.1 303.2C17.4 274.7 0 234.7 0 192.8v-3.3c0-70.4 50-130.8 119.2-144C158.6 37.9 198.9 47 231 69.6c9 6.4 17.4 13.8 25 22.3c4.2-4.8 8.7-9.2 13.5-13.3c3.7-3.2 7.5-6.2 11.5-9c0 0 0 0 0 0C313.1 47 353.4 37.9 392.8 45.4C462 58.6 512 119.1 512 189.5v3.3c0 41.9-17.4 81.9-48.1 110.4L288.7 465.9l-2.5 2.3c-8.2 7.6-19 11.9-30.2 11.9s-22-4.2-30.2-11.9zM239.1 145c-.4-.3-.7-.7-1-1.1l-17.8-20c0 0-.1-.1-.1-.1c0 0 0 0 0 0c-23.1-25.9-58-37.7-92-31.2C81.6 101.5 48 142.1 48 189.5v3.3c0 28.5 11.9 55.8 32.8 75.2L256 430.7 431.2 268c20.9-19.4 32.8-46.7 32.8-75.2v-3.3c0-47.3-33.6-88-80.1-96.9c-34-6.5-69 5.4-92 31.2c0 0 0 0-.1 .1s0 0-.1 .1l-17.8 20c-.3 .4-.7 .7-1 1.1c-4.5 4.5-10.6 7-16.9 7s-12.4-2.5-16.9-7z"/></svg> </div>
                 </div>
-                <Button text='Buy Now' color='#D2461c' icon='none' width='350px' />
+                <Button text='Buy Now' color='#D2461c' icon='none' width='350px'/>
                 <div className='product-info'>
                     <header>
                         <div className='filter-list'><h3>PRODUCT INFO</h3><button className='filter-toggle' onClick={() => { setState({ ...state, info: !state.info }) } }>{!state.info ? <img src={plus}/> : <img src={minus}/> } </button> </div>

@@ -13,6 +13,18 @@ const DetailCard = (props) => {
   const [colorSelected, setColorSelected] = useState([])
   // eslint-disable-next-line no-unused-vars
   const [image, setImage] = useState('')
+  const [info, setInfo] = useState({
+    sku: '',
+    name: '',
+    price: 0,
+    discountedPrice: 0,
+    color: '',
+    size: '',
+    qty: 2
+  })
+  const onChangeValue = (value) => {
+    setInfo({ ...info, qty: value })
+  }
   useEffect(() => {
     axios
       .get(`https://skillkamp-api.com/v1/api/products/details/${props.sku}`)
@@ -62,7 +74,7 @@ const DetailCard = (props) => {
                 </div>
                 <div>
                     <p>Quantity</p>
-                    <input type="text" value={1} />
+                    <input type="number" value={info.qty} onChange={onChangeValue} />
                 </div>
                 <Button text='Add to Cart' color='#282828' icon='none' width='350px' />
                 <NavLink to={'/product-page/' + data.urlPart}>View More Detail</NavLink>
