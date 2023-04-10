@@ -34,7 +34,7 @@
 .detail-container{
     display: flex;
     font-family: 'brandon_reg';
-    justify-content: space-around;
+    justify-content: space-between;
 }
 .detail-container input{
     height: 40px;
@@ -64,4 +64,15 @@
     font-family: 'brandon_reg';
     margin-bottom: 0;
     margin-top: 80px;
+}
+.main-container div{
+    margin: auto 30px;
+}
+.whish{
+    color: #D2461c;
+    width: 1.5rem;
+    border: 2px solid #D2461c;
+    padding: 5px 5px 1px 5px;
+    height: 30px ;
+
 }

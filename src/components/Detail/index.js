@@ -4,7 +4,7 @@ import axios from 'axios'
 import PropTypes from 'prop-types'
 import './index.css'
 import Button from '../UI/Button'
-import { NavLink, useParams } from 'react-router-dom'
+import { Link, NavLink, redirect, useHref, useParams } from 'react-router-dom'
 import plus from '../../assets/image/Icon/plus-solid.svg'
 import minus from '../../assets/image/Icon/minus-solid.svg'
 import CardSlider from '../NewArival/Cards'
@@ -14,11 +14,12 @@ const Detail = (props) => {
   const [colorlist, setColorlist] = useState([])
   const [sizelist, setSizelist] = useState([])
   const [state, setState] = useState({ info: false, return: false })
+  const [thumb, setthumb] = useState([])
   // eslint-disable-next-line no-unused-vars
   const [colorSelected, setColorSelected] = useState([])
   // eslint-disable-next-line no-unused-vars
   const [image, setImage] = useState('')
-  const pageNum = ['-4', '-7', '-5', '8', '-9', '', '-6', '-1', '-10', '-2', '-11', '-3']
+  const pageNum = ['-4', '-7', '-5', '-8', '-9', '', '-6', '-1', '-10', '-2', '-11', '-3']
   useEffect(() => {
     axios
       .get('https://skillkamp-api.com/v1/api/products/')
@@ -33,6 +34,8 @@ const Detail = (props) => {
             const detail = response.data.detail.data.catalog.product
             const initcolor = detail.options[0].selections.map(color => { return (color.key.toLowerCase()).replace(/ /g, '') })
             setData(detail)
+            const colorarr = detail.options[0].selections.map(color => { return (color.key.toLowerCase()).replace(/ /g, '') })
+            const thumbarr = detail.media.map(color => { return color.thumbnailFullUrl })
             setColorlist(detail.options[0].selections.map(color => { return (color.key.toLowerCase()).replace(/ /g, '') }))
             setSizelist(detail.options[1].selections.map(size => { return (size.value) }))
             console.log(detail)
@@ -41,6 +44,11 @@ const Detail = (props) => {
             const imageURL = selected[0].linkedMediaItems[0].fullUrl
             setImage(imageURL)
             setColorSelected(selected[0].key.toLowerCase().replace(/ /g, ''))
+            const combinedcolor = colorarr.map((key, index) => {
+              return { key: key, value: thumbarr[index] }
+            })
+            console.log(')))))', combinedcolor)
+            setthumb(combinedcolor)
           })
           .catch((error) => {
             console.log(error)
@@ -50,47 +58,21 @@ const Detail = (props) => {
       .catch((error) => {
         console.log(error)
       })
-  }, [])
-  const getProductName = () => {
-    const index = param.id.indexOf('product')
-    console.log('----', param.id)
-
-    const result = param.id.split('product')[1].slice(1)
-    console.log('----', result)
+  }, [param.id])
+  const goNext = () => {
+    const after = param.id.slice(param.id.indexOf('t') + 1)
+    const index = pageNum.indexOf(after)
+    if (index < 11) {
+      window.location.replace(`http://localhost:3000/product-page/i-m-a-product${pageNum[index + 1]}`)
+      console.log(index)
+    }
   }
-  const fetchdata = (sku) => {
-    window.location.href = '/product-page/i-m-a-product-5'
-    axios
-      .get('https://skillkamp-api.com/v1/api/products/')
-      .then((response) => {
-        const productList = response.data.detail.data.catalog.category.productsWithMetaData.list
-        const detail = productList.filter(element => element.urlPart === param.id)
-        return detail[0].sku
-      }).then(sku =>
-        axios
-          .get(`https://skillkamp-api.com/v1/api/products/details/${sku}`)
-          .then((response) => {
-            const detail = response.data.detail.data.catalog.product
-            const initcolor = detail.options[0].selections.map(color => { return (color.key.toLowerCase()).replace(/ /g, '') })
-            setData(detail)
-            setColorlist(detail.options[0].selections.map(color => { return (color.key.toLowerCase()).replace(/ /g, '') }))
-            setSizelist(detail.options[1].selections.map(size => { return (size.value) }))
-            console.log(detail)
-            console.log(initcolor[0])
-            const selected = detail.options[0].selections.filter(element => element.key.toLowerCase().replace(/ /g, '') === initcolor[0])
-            const imageURL = selected[0].linkedMediaItems[0].fullUrl
-            setImage(imageURL)
-            setColorSelected(selected[0].key.toLowerCase().replace(/ /g, ''))
-          })
-          .catch((error) => {
-            console.log(error)
-          })
-
-      )
-      .catch((error) => {
-        console.log(error)
-      })
-    getProductName()
+  const goPrev = () => {
+    const after = param.id.slice(param.id.indexOf('t') + 1)
+    const index = pageNum.indexOf(after)
+    if (index > 0) {
+      window.location.replace(`http://localhost:3000/product-page/i-m-a-product${pageNum[index - 1]}`)
+    }
   }
   const onChangeColor = (color) => {
     const selected = data.options[0].selections.filter(element => element.key.toLowerCase().replace(/ /g, '') === color)
@@ -99,23 +81,33 @@ const Detail = (props) => {
     setImage(imageURL)
   }
   return (<div>
-                <div className='header'>
+    <div style={{ margin: 'auto 20%' }}>
+<div className='header' style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <p>
                         Home/{data.name}
                     </p>
-                    <button onClick={fetchdata}>re</button>
+                    <div style={{ display: 'flex' }}>
+                    <p onClick={goPrev} style={{ cursor: 'pointer' }} >&lt; Prev</p>
+                    <p style={{ margin: 'auto 10px' }}> | </p>
+
+                    <p onClick={goNext} style={{ cursor: 'pointer' }}>Next &gt; </p>
+                    </div>
 
                 </div>
                 <div className='detail-container'>
                 <div>
                     <img style={{ width: '600px', height: '600px' }} src={image}/>
-                    <div style={{ width: '600px' }}>{data.description}
+                   <div>{ thumb.map(color => {
+                     console.log(color)
+                     return (<img key={color.key} style={{ width: '50px', marginLeft: '10px' }} className={`${colorSelected === color.key && 'selected'} ${color.key}`} onClick={() => { onChangeColor(color.key) }} src={color.value}/>)
+                   }) }</div>
+                    <div style={{ width: '600px' } } >{data.description}
                         </div>
                 </div>
-                <div ><p>{data.name}</p>
-                <p>{data.formattedDiscountedPrice}</p>
-                <p>sku: {data.sku} </p>
-                <p>color</p>
+                <div ><h1>{data.name}</h1>
+                   <p>sku: {data.sku} </p>
+            <p>{data.formattedDiscountedPrice}</p>
+                <p>color : {colorSelected}</p>
                 <ul className='color-container'>{colorlist.map(color => {
                   return (<li key={color.id} ><button onClick={() => {
                     onChangeColor(color)
@@ -133,7 +125,9 @@ const Detail = (props) => {
                     <p>Quantity</p>
                     <input type="text" value={1} />
                 </div>
-                <Button text='Add to Cart' color='#282828' icon='none' width='350px' />
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}><Button text='Add to Cart' color='#282828' icon='none' width='300px' />
+                <div className='whish'> <svg xmlns="http://www.w3.org/2000/svg" fill='currentColor' viewBox="0 0 512 512"><path d="M225.8 468.2l-2.5-2.3L48.1 303.2C17.4 274.7 0 234.7 0 192.8v-3.3c0-70.4 50-130.8 119.2-144C158.6 37.9 198.9 47 231 69.6c9 6.4 17.4 13.8 25 22.3c4.2-4.8 8.7-9.2 13.5-13.3c3.7-3.2 7.5-6.2 11.5-9c0 0 0 0 0 0C313.1 47 353.4 37.9 392.8 45.4C462 58.6 512 119.1 512 189.5v3.3c0 41.9-17.4 81.9-48.1 110.4L288.7 465.9l-2.5 2.3c-8.2 7.6-19 11.9-30.2 11.9s-22-4.2-30.2-11.9zM239.1 145c-.4-.3-.7-.7-1-1.1l-17.8-20c0 0-.1-.1-.1-.1c0 0 0 0 0 0c-23.1-25.9-58-37.7-92-31.2C81.6 101.5 48 142.1 48 189.5v3.3c0 28.5 11.9 55.8 32.8 75.2L256 430.7 431.2 268c20.9-19.4 32.8-46.7 32.8-75.2v-3.3c0-47.3-33.6-88-80.1-96.9c-34-6.5-69 5.4-92 31.2c0 0 0 0-.1 .1s0 0-.1 .1l-17.8 20c-.3 .4-.7 .7-1 1.1c-4.5 4.5-10.6 7-16.9 7s-12.4-2.5-16.9-7z"/></svg> </div>
+                </div>
                 <Button text='Buy Now' color='#D2461c' icon='none' width='350px' />
                 <div className='product-info'>
                     <header>
@@ -145,7 +139,9 @@ const Detail = (props) => {
                     </header>
                 </div>
                 </div>
-            </div> <div className='related' ><h3>RELATED PRODUCT</h3><CardSlider num={6}/></div>
+            </div>
+  </div>
+                 <div className='related' ><h3>RELATED PRODUCT</h3><CardSlider num={6}/></div>
   </div>
 
   )

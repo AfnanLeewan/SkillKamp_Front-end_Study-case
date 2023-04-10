@@ -7,17 +7,20 @@
 
 .card-wrapper {
  font-family: 'brandon_light';
-  width: 100%;
+  width: 80%;
   position: relative;
   cursor: pointer;
+  
 
 }
 
 .card {
+  width: 80%;
   background-color: #fff;
   border-radius: 4px;
   padding: 24px;
   text-align: center;
+  
 }
 
 .card img {
