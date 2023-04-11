@@ -177,3 +177,12 @@
   border: transparent;
   border-bottom: 1px solid #282828;
  }
+ .valid{
+    color: red;
+    margin-top: 0;
+    font-size: small;
+    position: absolute;
+ }
+ .loginform{
+    width: 400px;
+ }

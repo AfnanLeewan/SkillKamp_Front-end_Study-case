@@ -19,11 +19,15 @@ const Navigation = () => {
     setCartState(false)
   }
   useEffect(() => {
-    console.log(localStorage.getItem('token'))
-    setSelState(false)
-  }, [localStorage.getItem('token')])
+    const token = localStorage.getItem('token')
+    if (token !== undefined) {
+      console.log('token', token)
+    } else {
+      console.log('no token')
+    }
+  }, [])
   return (
-    <header className='header'>{selState && <SelectionCard set/>}
+    <header className='header'>{selState && <SelectionCard show={selState} onClickOutside={() => { setSelState(false) }}/>}
       {CartState && <Cart onClose={onCloseCart}/>}
       <nav>
         <ul className='lists'>

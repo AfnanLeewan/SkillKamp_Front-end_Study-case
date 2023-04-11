@@ -136,7 +136,7 @@ const Detail = (props) => {
           // eslint-disable-next-line quote-props
           'accept': 'application/json',
           // eslint-disable-next-line quote-props
-          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmdWxsbmFtZSI6InRlc3QxIiwidXNlcl9pZCI6InRlc3QxQGdtYWlsLmNvbSIsImV4cGlyZXMiOjE2ODExMjYwNjUuMTExMzQ4NH0.Qv73_l-EUSk8FFxnUqTcfSSEytjBNjNWCJ4LIZPioiI'
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
         },
         body: JSON.stringify(formData
         )

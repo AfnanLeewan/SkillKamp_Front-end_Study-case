@@ -1,15 +1,31 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import './Selection.css'
-const SelectionCard = () => {
+import PropTypes from 'prop-types'
+const SelectionCard = (props) => {
   const onLogout = () => {
     localStorage.removeItem('token')
     localStorage.removeItem('name')
     location.reload()
   }
 
+  const ref = useRef(null)
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        props.onClickOutside(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [ref])
+
   return (
         <div>
-            <div className='selection'>
+            <div className='selection' ref={ref}>
                 <ul>
                     <li>My Order</li>
                     <li>My Address</li>
@@ -25,3 +41,8 @@ const SelectionCard = () => {
   )
 }
 export default SelectionCard
+
+SelectionCard.propTypes = {
+  onClickOutside: PropTypes.func,
+  show: PropTypes.bool
+}
