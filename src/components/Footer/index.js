@@ -29,7 +29,14 @@ const Footer = () => {
                         </div>
 
                     </div>
-                    <div className='item'><Pageroute c1='Shipping & Returns' c2='Store Policy' c3='Payment Methods' c4='FAQ' /></div>
+                    <div className='item'>
+                        <Pageroute l1='/shipping-returns'
+                        l2= '/store-policy'
+                        l3='/store-policy'
+                        c1='Shipping & Returns'
+                        c2='Store Policy'
+                        c3='Payment Methods'
+                        c4='FAQ' /></div>
                 </div>
                 <div className='maillist'>
                    <h4>Join Our Mailing List</h4>

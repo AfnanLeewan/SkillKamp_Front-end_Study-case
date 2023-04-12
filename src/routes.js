@@ -12,6 +12,8 @@ import Myaddress from './page/MyAddress'
 import Mywallet from './page/MyWallet'
 import MyWishlist from './page/MyWishlist'
 import MySubscriptions from './page/MySubscriptions'
+import Shipping from './page/shipping'
+import Return from './page/retrurn'
 
 const router = createBrowserRouter([
   {
@@ -64,6 +66,14 @@ const router = createBrowserRouter([
   {
     path: '/my-subscribtion',
     element: <MySubscriptions/>
+  },
+  {
+    path: '/shipping-returns',
+    element: <Shipping/>
+  },
+  {
+    path: '/store-policy',
+    element: <Return/>
   }
 ])
 export default router

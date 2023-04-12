@@ -21,10 +21,6 @@ const SignInPage = (props) => {
   const [capcha, getcapcha] = useState(null)
   // eslint-disable-next-line no-unused-vars
   const [showForm, setShowForm] = useState(false)
-  function onChange (value) {
-    console.log('Captcha value:', value)
-    getcapcha(value)
-  }
   const handleSignUp = async (event) => {
     setValidEmail('')
     setValidPass('')
@@ -44,7 +40,6 @@ const SignInPage = (props) => {
         },
         body: JSON.stringify(formData)
       })
-      console.log(response.status)
       const data = await response.json()
       if (response.status === 201) {
         handleLogIn()
@@ -76,7 +71,6 @@ const SignInPage = (props) => {
           }
         }
       }
-      console.log(data)
     } catch (error) {
       console.error(error)
     }
@@ -84,7 +78,6 @@ const SignInPage = (props) => {
   const handleLogIn = async (event) => {
     setValidEmail('')
     setValidPass('')
-    console.log('3333', isLogIn)
     if (isLogIn) { event.preventDefault() }
     const formData = {
       email: emailRef.current.value,
@@ -99,7 +92,6 @@ const SignInPage = (props) => {
         body: JSON.stringify(formData)
       })
       const data = await response.json()
-      console.log(data, response.status)
       if (response.status === 200) {
         localStorage.setItem('token', data.detail.Token)
         localStorage.setItem('name', data.detail.Name)

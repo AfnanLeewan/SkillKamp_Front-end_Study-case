@@ -23,12 +23,9 @@ const Cart = (props) => {
     )
       .then(response => response.json())
       .then(data => {
-        const products = data
         const sum = data.detail.cart_list.reduce((acc, cur) => acc + cur.qty, 0)
         setCartNum(sum)
-        console.log(products)
         settotal(data.detail.total)
-        console.log(data.detail.total)
         setData(data.detail.cart_list)
       })
   }, [])
@@ -46,12 +43,9 @@ const Cart = (props) => {
     )
       .then(response => response.json())
       .then(data => {
-        const products = data
         const sum = data.detail.cart_list.reduce((acc, cur) => acc + cur.qty, 0)
         setCartNum(sum)
-        console.log(products)
         settotal(data.detail.total)
-        console.log(data.detail.total)
         setData(data.detail.cart_list)
       })
     props.reRender()

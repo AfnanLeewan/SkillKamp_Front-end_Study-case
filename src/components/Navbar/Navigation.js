@@ -23,12 +23,6 @@ const Navigation = (props) => {
     setDisplay(props.validCred)
   }
   useEffect(() => {
-    const token = localStorage.getItem('token')
-    if (token !== undefined) {
-      console.log('token', token)
-    } else {
-      console.log('no token')
-    }
     fetch('https://skillkamp-api.com/v1/api/cart',
       {
         headers: {
@@ -43,7 +37,6 @@ const Navigation = (props) => {
       .then(data => {
         const sum = data.detail.cart_list.reduce((acc, cur) => acc + cur.qty, 0)
         setCartNum(sum)
-        console.log(sum)
       })
   }, [])
   const reRender = () => {
@@ -60,10 +53,8 @@ const Navigation = (props) => {
     )
       .then(response => response.json())
       .then(data => {
-        const products = data
         const sum = data.detail.cart_list.reduce((acc, cur) => acc + cur.qty, 0)
         setCartNum(sum)
-        console.log(products)
       })
   }
 
@@ -92,7 +83,6 @@ const Navigation = (props) => {
       <button onClick={() => {
         if (!localStorage.getItem('token')) {
           setDisplay(!display)
-          console.log('clik')
         } else {
           setSelState(!selState)
         }

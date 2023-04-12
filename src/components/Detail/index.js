@@ -52,8 +52,6 @@ const Detail = (props) => {
             const thumbarr = detail.media.map(color => { return color.thumbnailFullUrl })
             setColorlist(detail.options[0].selections.map(color => { return (color.key.toLowerCase()).replace(/ /g, '') }))
             setSizelist(detail.options[1].selections.map(size => { return (size.value) }))
-            console.log(detail)
-            console.log(initcolor[0])
             setInfo(setInfo(() => { return { sku: detail.sku, name: detail.name, price: detail.price } }))
             const selected = detail.options[0].selections.filter(element => element.key.toLowerCase().replace(/ /g, '') === initcolor[0])
             const imageURL = selected[0].linkedMediaItems[0].fullUrl
@@ -72,7 +70,6 @@ const Detail = (props) => {
               size: '',
               qty: 1
             }
-            console.log(infoDetail)
             setInfo(infoDetail)
             setthumb(combinedcolor)
           })
@@ -80,7 +77,7 @@ const Detail = (props) => {
             console.log(error)
           })
 
-      ).then(() => { console.log(infoState) })
+      )
       .catch((error) => {
         console.log(error)
       })
@@ -90,7 +87,6 @@ const Detail = (props) => {
     const index = pageNum.indexOf(after)
     if (index < 11) {
       window.location.replace(`http://localhost:3000/product-page/i-m-a-product${pageNum[index + 1]}`)
-      console.log(index)
     }
   }
   const goPrev = () => {
@@ -109,7 +105,6 @@ const Detail = (props) => {
     const updatedObject = { ...infoState }
     updatedObject.size = event.target.value
     setInfo(updatedObject)
-    console.log(updatedObject)
   }
   const onChangeColor = (color) => {
     const selected = data.options[0].selections.filter(element => element.key.toLowerCase().replace(/ /g, '') === color)
@@ -127,7 +122,6 @@ const Detail = (props) => {
       return
     }
     setValidSize('')
-    console.log(infoState)
     event.preventDefault()
     const formData = {
       sku: infoState.sku,
@@ -138,7 +132,6 @@ const Detail = (props) => {
       size: infoState.size,
       qty: infoState.qty
     }
-    console.log(JSON.stringify(formData))
     try {
       const response = await fetch('https://skillkamp-api.com/v1/api/cart', {
         method: 'POST',
@@ -161,11 +154,8 @@ const Detail = (props) => {
         location.reload()
       }
       if (response.status === 403) {
-        console.log('not')
         setDisplay(true)
       }
-
-      console.log(data)
     } catch (error) {
       console.error(error)
     }
@@ -204,7 +194,6 @@ const Detail = (props) => {
                 <ul className='color-container'>{colorlist.map(color => {
                   return (<li key={color.id} ><button onClick={() => {
                     onChangeColor(color)
-                    console.log(colorSelected, color)
                   }} className={`color ${colorSelected === color && 'selected'} ${color}`}/></li>)
                 })} </ul>
                 <div>

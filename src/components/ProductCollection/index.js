@@ -10,7 +10,6 @@ const Collection = () => {
       .get('https://skillkamp-api.com/v1/api/products/')
       .then((response) => {
         setData(response.data.detail.data.catalog.category.productsWithMetaData.list)
-        console.log(response.data.detail.data.catalog.category.productsWithMetaData.list)
       })
       .catch((error) => {
         console.log(error)

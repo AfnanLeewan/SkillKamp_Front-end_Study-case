@@ -30,9 +30,7 @@ const CartPage = () => {
         const products = data
         const sum = data.detail.cart_list.reduce((acc, cur) => acc + cur.qty, 0)
         setCartNum(sum)
-        console.log(products)
         settotal(data.detail.total)
-        console.log(data.detail.cart_list)
         setData(data.detail.cart_list)
       })
   }, [])
@@ -53,9 +51,7 @@ const CartPage = () => {
         const products = data
         const sum = data.detail.cart_list.reduce((acc, cur) => acc + cur.qty, 0)
         setCartNum(sum)
-        console.log(products)
         settotal(data.detail.total)
-        console.log(data.detail.cart_list)
         setData(data.detail.cart_list)
         Product = data.map(item => { return (<Carts reRender={{ reRender }} key={ item.sky } item={item} />) })
       })

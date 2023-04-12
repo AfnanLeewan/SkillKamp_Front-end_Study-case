@@ -34,8 +34,6 @@ const DetailCard = (props) => {
         setData(detail)
         setColorlist(detail.options[0].selections.map(color => { return (color.key.toLowerCase()).replace(/ /g, '') }))
         setSizelist(detail.options[1].selections.map(size => { return (size.value) }))
-        console.log(detail)
-        console.log(initcolor[0])
         const selected = detail.options[0].selections.filter(element => element.key.toLowerCase().replace(/ /g, '') === initcolor[0])
         const imageURL = selected[0].linkedMediaItems[0].fullUrl
         setImage(imageURL)
@@ -62,7 +60,6 @@ const DetailCard = (props) => {
                 <ul className='color-container'>{colorlist.map(color => {
                   return (<li key={color.id} ><button onClick={() => {
                     onChangeColor(color)
-                    console.log(colorSelected, color)
                   }} className={`color ${colorSelected === color && 'selected'} ${color}`}/></li>)
                 })} </ul>
                 <div>
