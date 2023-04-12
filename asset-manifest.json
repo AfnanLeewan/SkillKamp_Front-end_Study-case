@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.css": "/static/css/main.046d3295.css",
+    "main.js": "/static/js/main.837d2c87.js",
+    "static/js/787.0600413f.chunk.js": "/static/js/787.0600413f.chunk.js",
+    "static/media/Banner4- Our story.png": "/static/media/Banner4- Our story.3a497dd87e55b5efb935.png",
+    "static/media/Banner1.png": "/static/media/Banner1.3383f6e0547e07007961.png",
+    "static/media/Banner2.png": "/static/media/Banner2.10e008ed5a5b7fba4e43.png",
+    "static/media/Banner3.png": "/static/media/Banner3.feb16339894c64aede7f.png",
+    "static/media/Brandon_thin.otf": "/static/media/Brandon_thin.ca94a71666fbf1d1fb06.otf",
+    "static/media/Brandon_bld.otf": "/static/media/Brandon_bld.645d96f9d734d763912c.otf",
+    "static/media/Brandon_light.otf": "/static/media/Brandon_light.f49b6cce4e0bc103de5f.otf",
+    "static/media/Brandon_reg.otf": "/static/media/Brandon_reg.cac94907833ae55f0a4c.otf",
+    "static/media/cart-svgrepo-com.svg": "/static/media/cart-svgrepo-com.da34efe8bdc7a4bd2a3512589960dbf9.svg",
+    "static/media/instagram-svgrepo-com.svg": "/static/media/instagram-svgrepo-com.6eb4ddd2300c25c8aa41a985818d323a.svg",
+    "static/media/slick.svg": "/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
+    "static/media/facebook-svgrepo-com.svg": "/static/media/facebook-svgrepo-com.145b70d3ebc4c999f7ddfbb7449fa5f9.svg",
+    "index.html": "/index.html",
+    "static/media/xmark-solid.svg": "/static/media/xmark-solid.6af010327c10a01672900f26b9d06c67.svg",
+    "static/media/pinterest-svgrepo-com.svg": "/static/media/pinterest-svgrepo-com.61fa35f1611bef1326652f6166a50e74.svg",
+    "static/media/circle-user-solid.svg": "/static/media/circle-user-solid.6cf20ee0cc368ebbc32bc6ef23a9b836.svg",
+    "static/media/plus-solid.svg": "/static/media/plus-solid.c4ad914c4a4c568589ae272f9f4b07bf.svg",
+    "static/media/angle-down-solid.svg": "/static/media/angle-down-solid.b0ee6c7e43846a3ee68c0a7056f5b490.svg",
+    "static/media/angle-left-solid.svg": "/static/media/angle-left-solid.07823b81d7b3f5ae2b7d57094b674399.svg",
+    "static/media/minus-solid.svg": "/static/media/minus-solid.71e03d0391038c95d4d667bd03c6bae0.svg",
+    "static/media/angle-right-solid.svg": "/static/media/angle-right-solid.0fe70628e5fb6db1a78d875ca772fbfe.svg",
+    "main.046d3295.css.map": "/static/css/main.046d3295.css.map",
+    "main.837d2c87.js.map": "/static/js/main.837d2c87.js.map",
+    "787.0600413f.chunk.js.map": "/static/js/787.0600413f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.046d3295.css",
+    "static/js/main.837d2c87.js"
+  ]
+}
