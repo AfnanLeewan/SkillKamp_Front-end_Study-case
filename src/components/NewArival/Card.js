@@ -7,7 +7,6 @@ const Card = (props) => {
   const [displayDetail, setDisplayDetail] = useState(false)
   const onClose = () => {
     setDisplayDetail(false)
-    console.log(props.url)
   }
   return (
         <div className="card-wrapper" onMouseOver={() => setCardState(true)} onMouseLeave={() => { setCardState(false) }}>

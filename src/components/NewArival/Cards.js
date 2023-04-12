@@ -52,7 +52,6 @@ function CardSlider (props) {
       .then(data => {
         const products = data.detail.data.catalog.category.productsWithMetaData.list
         setNewArrivalProducts(products)
-        console.log(products)
       })
   }, [])
   return (
