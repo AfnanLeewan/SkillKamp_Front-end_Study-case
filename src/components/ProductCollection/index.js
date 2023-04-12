@@ -22,7 +22,7 @@ const Collection = () => {
   for (let i = 0; i < rows; i++) {
     const start = i * 3
     const rowItems = data.slice(start, start + 3).map((card) => (
-        <Card key={card.id} sku={card.sku} mediaUrl={card.media[0].url} name={card.name} description={card.description} price={card.formattedPrice}/>
+        <Card key={card.id} sku={card.sku} mediaUrl={card.media[0].url} name={card.name} description={card.description} price={card.formattedPrice} url={card.urlPart}/>
     ))
     itemRows.push(
       <div key={i} className="row">

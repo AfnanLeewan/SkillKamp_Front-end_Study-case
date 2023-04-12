@@ -7,16 +7,20 @@ import SignInPage from '../SignIn'
 import down from '../../assets/image/Icon/angle-down-solid.svg'
 import SelectionCard from './SelectionCard'
 import Cart from '../CartCard'
-const Navigation = () => {
+import PropTypes from 'prop-types'
+const Navigation = (props) => {
   const [display, setDisplay] = useState(false)
   // eslint-disable-next-line no-unused-vars
   const [selState, setSelState] = useState(false)
   const [CartState, setCartState] = useState(false)
+  // eslint-disable-next-line no-unused-vars
+  const [CartNum, setCartNum] = useState(0)
   const onClose = () => {
     setDisplay(!display)
   }
   const onCloseCart = () => {
     setCartState(false)
+    setDisplay(props.validCred)
   }
   useEffect(() => {
     const token = localStorage.getItem('token')
@@ -25,10 +29,47 @@ const Navigation = () => {
     } else {
       console.log('no token')
     }
+    fetch('https://skillkamp-api.com/v1/api/cart',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          // eslint-disable-next-line quote-props
+          'accept': 'application/json',
+          // eslint-disable-next-line quote-props
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        const sum = data.detail.cart_list.reduce((acc, cur) => acc + cur.qty, 0)
+        setCartNum(sum)
+        console.log(sum)
+      })
   }, [])
+  const reRender = () => {
+    fetch('https://skillkamp-api.com/v1/api/cart', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        // eslint-disable-next-line quote-props
+        'accept': 'application/json',
+        // eslint-disable-next-line quote-props
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    }
+    )
+      .then(response => response.json())
+      .then(data => {
+        const products = data
+        const sum = data.detail.cart_list.reduce((acc, cur) => acc + cur.qty, 0)
+        setCartNum(sum)
+        console.log(products)
+      })
+  }
+
   return (
     <header className='header'>{selState && <SelectionCard show={selState} onClickOutside={() => { setSelState(false) }}/>}
-      {CartState && <Cart onClose={onCloseCart}/>}
+      {CartState && <Cart reRender={reRender} onClose={onCloseCart} />}
       <nav>
         <ul className='lists'>
           <li>
@@ -61,7 +102,7 @@ const Navigation = () => {
         </button>
         <button onClick={() => { setCartState(true) }}>
         <img src={CartIcon} style={{ width: '20px' }}/>
-        <p className='number'>0</p>
+        <p className='number'>{CartNum}</p>
         </button>
 
       </div>
@@ -71,5 +112,9 @@ const Navigation = () => {
     </div>
     </header>
   )
+}
+Navigation.propTypes = {
+  validCred: PropTypes.func,
+  CartNum: PropTypes.number
 }
 export default Navigation

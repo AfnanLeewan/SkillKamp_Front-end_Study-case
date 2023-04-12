@@ -11,7 +11,13 @@ const Footer = () => {
                         <div className='body'>
                 <h3 className='name'>happy kids</h3>
                 <div className='container'>
-                    <div className='item'><Pageroute c1='Home' c2='Shop Collection' c3='Our Story' c4='Cantact' /></div>
+                    <div className='item'>
+                        <Pageroute
+                        c1='Home' c2='Shop Collection'
+                        c3='Our Story' c4='Cantact'
+                        l1='/' l2='/shop-collection'
+                        l3='/our-story' l4='/contact'
+                        /></div>
                     <div className='item'>
                         <div className='icon-container'>
                             <ul className='lists-icon'>

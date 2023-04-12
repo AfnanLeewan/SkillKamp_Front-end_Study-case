@@ -1,11 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import './index.css'
 const Button = (props) => {
+  const [hover, setHover] = useState(false)
   const ButtonType = () => {
     if (props.icon === 'none') {
       return (
-        <button onClick={props.onClick} className='btn'style={{ backgroundColor: `${props.color}`, color: '#ffffff', width: `${props.width}` }}>{props.text}</button>
+        <button onClick={props.onClick}
+        onMouseOver={() => { setHover(true) } }
+        onMouseLeave={() => { setHover(false) }}
+        className='btn'
+        style={{
+          backgroundColor: hover ? '#D2461c' : props.color,
+          color: '#ffffff',
+          width: `${props.width}`
+        }}>{props.text}</button>
       )
     }
     if (props.icon === 'left') {

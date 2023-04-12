@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import './Selection.css'
 import PropTypes from 'prop-types'
+import { NavLink } from 'react-router-dom'
 const SelectionCard = (props) => {
   const onLogout = () => {
     localStorage.removeItem('token')
@@ -27,17 +28,18 @@ const SelectionCard = (props) => {
         <div>
             <div className='selection' ref={ref}>
                 <ul>
-                    <li>My Order</li>
-                    <li>My Address</li>
-                    <li>My Wallet</li>
-                    <li>My wishlist</li>
-                    <li>My Subscription</li>
-                    <li>My Account</li>
+                    <li><NavLink style={{ textDecoration: 'none' }} to='/my-orders' >My Order</NavLink> </li>
+                    <li><NavLink style={{ textDecoration: 'none' }}to='/my-address' >My Address</NavLink> </li>
+                    <li><NavLink style={{ textDecoration: 'none' }}to='/my-wallet' >My Wallet</NavLink> </li>
+                    <li><NavLink style={{ textDecoration: 'none' }}to='/my-wishlist' >My Wishlist</NavLink> </li>
+                    <li><NavLink style={{ textDecoration: 'none' }}to='/my-subscribtion' >My subscribtion</NavLink> </li>
+                    <li><NavLink className='list' style={{ textDecoration: 'none' }}to='/my-account' >My Account</NavLink> </li>
                     <hr/>
                     <li onClick={onLogout}>Logout</li>
                 </ul>
             </div>
         </div>
+
   )
 }
 export default SelectionCard

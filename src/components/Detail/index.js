@@ -8,6 +8,7 @@ import { Link, NavLink, redirect, useHref, useParams } from 'react-router-dom'
 import plus from '../../assets/image/Icon/plus-solid.svg'
 import minus from '../../assets/image/Icon/minus-solid.svg'
 import CardSlider from '../NewArival/Cards'
+import SignInPage from '../SignIn'
 const Detail = (props) => {
   const param = useParams()
   const [data, setData] = useState({})
@@ -15,6 +16,9 @@ const Detail = (props) => {
   const [sizelist, setSizelist] = useState([])
   const [state, setState] = useState({ info: false, return: false })
   const [thumb, setthumb] = useState([])
+  const [validSize, setValidSize] = useState('')
+  const [display, setDisplay] = useState(false)
+  const [CartNum, setCartNum] = useState(0)
   const [infoState, setInfo] = useState({
     sku: '',
     name: '',
@@ -30,6 +34,7 @@ const Detail = (props) => {
   const [image, setImage] = useState('')
   const pageNum = ['-4', '-7', '-5', '-8', '-9', '', '-6', '-1', '-10', '-2', '-11', '-3']
   useEffect(() => {
+    setValidSize('')
     axios
       .get('https://skillkamp-api.com/v1/api/products/')
       .then((response) => {
@@ -57,12 +62,13 @@ const Detail = (props) => {
             const combinedcolor = colorarr.map((key, index) => {
               return { key: key, value: thumbarr[index] }
             })
+            const selectedcolor = detail.options[0].selections.map(color => { return (color.key) })
             const infoDetail = {
               sku: detail.sku,
               name: detail.name,
               price: detail.price,
               discountedPrice: detail.discountedPrice,
-              color: '',
+              color: selectedcolor[0],
               size: '',
               qty: 1
             }
@@ -116,6 +122,11 @@ const Detail = (props) => {
     setInfo(updatedObject)
   }
   const onAdd = async (event) => {
+    if (infoState.size === '' || infoState.size === 'Select') {
+      setValidSize('Select Size')
+      return
+    }
+    setValidSize('')
     console.log(infoState)
     event.preventDefault()
     const formData = {
@@ -142,6 +153,18 @@ const Detail = (props) => {
         )
       })
       const data = await response.json()
+      if (response.status === 200) {
+        setDisplay(false)
+        const sum = data.detail.cart_list.reduce((acc, cur) => acc + cur.qty, 0)
+        setCartNum(sum)
+        props.setCart(sum)
+        location.reload()
+      }
+      if (response.status === 403) {
+        console.log('not')
+        setDisplay(true)
+      }
+
       console.log(data)
     } catch (error) {
       console.error(error)
@@ -150,6 +173,9 @@ const Detail = (props) => {
 
   return (<div>
     <div style={{ margin: 'auto 20%' }}>
+    <div className={`fullscreen ${display ? 'displayed' : ''}`}>
+      <SignInPage onClose={() => { setDisplay(false) }}/>
+    </div>
 <div className='header' style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <p>
                         Home/{data.name}
@@ -183,14 +209,15 @@ const Detail = (props) => {
                 })} </ul>
                 <div>
                     <div>size</div>
-                    <select onChange={onChangeSize}>
+                    <select value={infoState.size} onChange={onChangeSize}>
                         <option>Select</option>
                         {sizelist.map(size => { return (<option key={size}>{size}</option>) })}
                     </select>
+                    {validSize && <p style={{ color: 'red' }}>Select Size</p>}
                 </div>
                 <div>
                     <p>Quantity</p>
-                    <input type="number" onChange={onChangeValue} />
+                    <input type="number" min={1} onChange={onChangeValue} value={infoState.qty} />
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}><Button text='Add to Cart' color='#282828' icon='none' width='300px' onClick={onAdd}/>
                 <div className='whish'> <svg xmlns="http://www.w3.org/2000/svg" fill='currentColor' viewBox="0 0 512 512"><path d="M225.8 468.2l-2.5-2.3L48.1 303.2C17.4 274.7 0 234.7 0 192.8v-3.3c0-70.4 50-130.8 119.2-144C158.6 37.9 198.9 47 231 69.6c9 6.4 17.4 13.8 25 22.3c4.2-4.8 8.7-9.2 13.5-13.3c3.7-3.2 7.5-6.2 11.5-9c0 0 0 0 0 0C313.1 47 353.4 37.9 392.8 45.4C462 58.6 512 119.1 512 189.5v3.3c0 41.9-17.4 81.9-48.1 110.4L288.7 465.9l-2.5 2.3c-8.2 7.6-19 11.9-30.2 11.9s-22-4.2-30.2-11.9zM239.1 145c-.4-.3-.7-.7-1-1.1l-17.8-20c0 0-.1-.1-.1-.1c0 0 0 0 0 0c-23.1-25.9-58-37.7-92-31.2C81.6 101.5 48 142.1 48 189.5v3.3c0 28.5 11.9 55.8 32.8 75.2L256 430.7 431.2 268c20.9-19.4 32.8-46.7 32.8-75.2v-3.3c0-47.3-33.6-88-80.1-96.9c-34-6.5-69 5.4-92 31.2c0 0 0 0-.1 .1s0 0-.1 .1l-17.8 20c-.3 .4-.7 .7-1 1.1c-4.5 4.5-10.6 7-16.9 7s-12.4-2.5-16.9-7z"/></svg> </div>
@@ -221,6 +248,8 @@ Detail.propTypes = {
   name: PropTypes.string,
   id: PropTypes.string,
   description: PropTypes.string,
-  formattedPrice: PropTypes.string
+  formattedPrice: PropTypes.string,
+  setValid: PropTypes.func,
+  setCart: PropTypes.func
 }
 export default Detail

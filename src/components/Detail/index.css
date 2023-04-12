@@ -76,3 +76,17 @@
     height: 30px ;
 
 }
+.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: none;
+  }
+  
+  .fullscreen.displayed {
+    display: block;
+    background-color: white;
+    z-index: 1;
+  }

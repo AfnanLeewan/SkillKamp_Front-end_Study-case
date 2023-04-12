@@ -180,7 +180,8 @@ const SignInPage = (props) => {
     <input className='text-input' id='password' name='password' required type='password' ref={passRef} />
     <p className='valid'> {validPass}</p>
   </p>
-  <div style={{ margin: 'auto' }}><Button text={isLogIn ? 'Log In' : 'Sign Up'} onClick={isLogIn ? handleLogIn : handleSignUp} icon='none' color='#D2461c' width='400px' /></div>
+  <div style={{ margin: 'auto' }}>
+    <Button text={isLogIn ? 'Log In' : 'Sign Up'} onClick={isLogIn ? handleLogIn : handleSignUp} icon='none' color='#D2461c' width='400px' /></div>
           </form> </div>}
         </div>
 
